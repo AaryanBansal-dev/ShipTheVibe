@@ -45,28 +45,28 @@ const Modal = ({ isOpen, onClose, title, children, className, size = 'md' }: Mod
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-fade-in"
+        className="absolute inset-0 bg-surface/80 backdrop-blur-sm animate-fade-in"
         onClick={onClose}
       />
       
       {/* Modal Content */}
       <div
         className={cn(
-          'relative w-full mx-4 bg-white dark:bg-zinc-800 rounded-2xl shadow-2xl',
-          'animate-scale-in',
+          'relative w-full mx-4 bg-surface-elevated rounded-2xl shadow-2xl border border-border',
+          'animate-reveal-scale',
           sizeStyles[size],
           className
         )}
       >
         {/* Header */}
         {title && (
-          <div className="flex items-center justify-between p-4 border-b border-zinc-200 dark:border-zinc-700">
-            <h2 className="text-lg font-semibold text-zinc-900 dark:text-white">{title}</h2>
+          <div className="flex items-center justify-between p-5 border-b border-border">
+            <h2 className="text-lg font-semibold text-foreground">{title}</h2>
             <button
               onClick={onClose}
-              className="p-1 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+              className="p-1.5 rounded-lg hover:bg-surface-overlay text-foreground-muted hover:text-foreground transition-colors"
             >
-              <svg className="w-5 h-5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -74,7 +74,7 @@ const Modal = ({ isOpen, onClose, title, children, className, size = 'md' }: Mod
         )}
         
         {/* Body */}
-        <div className="p-4">
+        <div className="p-5">
           {children}
         </div>
       </div>

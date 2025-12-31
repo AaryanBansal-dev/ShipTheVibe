@@ -12,12 +12,12 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold gradient-text">ShipTheVibe</span>
+            <span className="text-xl font-semibold text-gradient">ShipTheVibe</span>
           </Link>
 
           {/* Right side */}
@@ -25,12 +25,12 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-zinc-800/50 hover:bg-zinc-700/50 border border-zinc-700/50 transition-all duration-200"
+              className="p-2.5 rounded-lg bg-surface-elevated/50 hover:bg-surface-overlay border border-border transition-all duration-200"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
                 <svg
-                  className="w-5 h-5 text-yellow-400"
+                  className="w-4 h-4 text-accent"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
                 </svg>
               ) : (
                 <svg
-                  className="w-5 h-5 text-zinc-400"
+                  className="w-4 h-4 text-foreground-muted"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -64,13 +64,13 @@ export default function Navbar({ showAuthButtons = true }: NavbarProps) {
               <div className="flex items-center gap-3">
                 <Link
                   href="/auth/signin"
-                  className="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-foreground-muted hover:text-foreground transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg shadow-blue-500/25"
+                  className="px-4 py-2 text-sm font-medium btn-primary rounded-lg"
                 >
                   Get Started
                 </Link>

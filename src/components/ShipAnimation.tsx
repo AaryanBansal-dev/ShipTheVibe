@@ -40,25 +40,25 @@ export default function ShipAnimation() {
   const stars = useMemo(() => STAR_POSITIONS, []);
 
   return (
-    <div className="relative w-full h-80 overflow-hidden">
+    <div className="relative w-full h-80 overflow-hidden rounded-2xl border border-border bg-surface-elevated/30">
       {/* Stars background */}
       <div className="absolute inset-0">
         {stars.map((star, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+            className="absolute w-1 h-1 bg-accent rounded-full animate-pulse"
             style={{
               left: `${star.left}%`,
               top: `${star.top}%`,
               animationDelay: `${star.delay}s`,
-              opacity: star.opacity,
+              opacity: star.opacity * 0.6,
             }}
           />
         ))}
       </div>
 
       {/* Moon */}
-      <div className="absolute top-8 right-16 w-16 h-16 bg-gradient-to-br from-zinc-200 to-zinc-400 rounded-full shadow-lg shadow-zinc-400/20" />
+      <div className="absolute top-8 right-16 w-16 h-16 bg-gradient-to-br from-accent/40 to-accent-muted/30 rounded-full shadow-lg" style={{ boxShadow: '0 0 40px rgba(212, 165, 116, 0.2)' }} />
 
       {/* SVG Scene */}
       <svg
@@ -66,19 +66,19 @@ export default function ShipAnimation() {
         className="absolute bottom-0 w-full h-auto"
         preserveAspectRatio="xMidYMax slice"
       >
-        {/* Water gradient */}
+        {/* Water gradient - warm tones */}
         <defs>
           <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#1e3a5f" />
-            <stop offset="100%" stopColor="#0a1628" />
+            <stop offset="0%" stopColor="#1a1714" />
+            <stop offset="100%" stopColor="#0f0d0b" />
           </linearGradient>
           <linearGradient id="shipHull" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#8B4513" />
-            <stop offset="100%" stopColor="#5C3317" />
+            <stop offset="0%" stopColor="#8b7355" />
+            <stop offset="100%" stopColor="#5c4a38" />
           </linearGradient>
           <linearGradient id="sailGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#f5f5f5" />
-            <stop offset="100%" stopColor="#e0e0e0" />
+            <stop offset="0%" stopColor="#f5f0e8" />
+            <stop offset="100%" stopColor="#d4cfc5" />
           </linearGradient>
         </defs>
 
@@ -89,7 +89,7 @@ export default function ShipAnimation() {
         <g className="animate-wave-slow">
           <path
             d="M-100,200 Q0,180 100,200 T300,200 T500,200 T700,200 T900,200 L900,300 L-100,300 Z"
-            fill="#1e4a6f"
+            fill="#252119"
             opacity="0.5"
           />
         </g>
@@ -100,29 +100,29 @@ export default function ShipAnimation() {
           <path
             d="M100,220 L130,180 L270,180 L300,220 L280,240 L120,240 Z"
             fill="url(#shipHull)"
-            stroke="#3d2314"
+            stroke="#4a3f32"
             strokeWidth="2"
           />
           
           {/* Hull detail line */}
           <path
             d="M135,200 L265,200"
-            stroke="#3d2314"
+            stroke="#4a3f32"
             strokeWidth="2"
             fill="none"
           />
 
           {/* Mast */}
-          <rect x="195" y="80" width="8" height="100" fill="#4a3728" />
+          <rect x="195" y="80" width="8" height="100" fill="#5c4a38" />
           
           {/* Cross beam */}
-          <rect x="150" y="100" width="100" height="6" fill="#4a3728" />
+          <rect x="150" y="100" width="100" height="6" fill="#5c4a38" />
           
           {/* Main sail */}
           <path
             d="M155,105 L195,105 L195,170 Q175,175 155,170 Z"
             fill="url(#sailGradient)"
-            stroke="#ccc"
+            stroke="#a89f94"
             strokeWidth="1"
           />
           
@@ -130,28 +130,28 @@ export default function ShipAnimation() {
           <path
             d="M205,105 L245,105 L245,170 Q225,175 205,170 Z"
             fill="url(#sailGradient)"
-            stroke="#ccc"
+            stroke="#a89f94"
             strokeWidth="1"
           />
 
-          {/* Flag */}
+          {/* Flag - copper accent */}
           <polygon
             points="199,80 230,90 199,100"
-            fill="#8b5cf6"
+            fill="#d4a574"
             className="animate-flag"
           />
 
           {/* Cabin */}
-          <rect x="230" y="190" width="35" height="25" fill="#5C3317" stroke="#3d2314" strokeWidth="1" />
-          <rect x="238" y="195" width="8" height="8" fill="#f5e6a3" opacity="0.8" />
-          <rect x="252" y="195" width="8" height="8" fill="#f5e6a3" opacity="0.8" />
+          <rect x="230" y="190" width="35" height="25" fill="#5c4a38" stroke="#4a3f32" strokeWidth="1" />
+          <rect x="238" y="195" width="8" height="8" fill="#d4a574" opacity="0.6" />
+          <rect x="252" y="195" width="8" height="8" fill="#d4a574" opacity="0.6" />
         </g>
 
         {/* Animated waves - front layer */}
         <g className="animate-wave">
           <path
             d="M-100,220 Q0,200 100,220 T300,220 T500,220 T700,220 T900,220 L900,300 L-100,300 Z"
-            fill="#0f2d44"
+            fill="#1a1714"
             opacity="0.7"
           />
         </g>
@@ -160,16 +160,16 @@ export default function ShipAnimation() {
         <g className="animate-wave-fast">
           <path
             d="M-100,240 Q50,225 150,240 T350,240 T550,240 T750,240 T950,240 L950,300 L-100,300 Z"
-            fill="#0a1f30"
+            fill="#0f0d0b"
             opacity="0.9"
           />
         </g>
 
-        {/* Sparkles on water */}
-        <circle cx="200" cy="250" r="2" fill="white" opacity="0.6" className="animate-sparkle" />
-        <circle cx="450" cy="235" r="1.5" fill="white" opacity="0.5" className="animate-sparkle-delayed" />
-        <circle cx="650" cy="255" r="2" fill="white" opacity="0.4" className="animate-sparkle" />
-        <circle cx="350" cy="260" r="1" fill="white" opacity="0.5" className="animate-sparkle-delayed" />
+        {/* Sparkles on water - copper tones */}
+        <circle cx="200" cy="250" r="2" fill="#d4a574" opacity="0.4" className="animate-sparkle" />
+        <circle cx="450" cy="235" r="1.5" fill="#d4a574" opacity="0.3" className="animate-sparkle-delayed" />
+        <circle cx="650" cy="255" r="2" fill="#d4a574" opacity="0.25" className="animate-sparkle" />
+        <circle cx="350" cy="260" r="1" fill="#d4a574" opacity="0.35" className="animate-sparkle-delayed" />
       </svg>
 
       <style jsx>{`
@@ -231,10 +231,10 @@ export default function ShipAnimation() {
 
         @keyframes sparkle {
           0%, 100% {
-            opacity: 0.2;
+            opacity: 0.15;
           }
           50% {
-            opacity: 0.8;
+            opacity: 0.5;
           }
         }
       `}</style>

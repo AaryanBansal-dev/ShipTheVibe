@@ -24,7 +24,7 @@ describe('Button Component', () => {
   it('renders secondary variant correctly', () => {
     render(<Button label="Secondary" onClick={() => {}} variant="secondary" />);
     const button = screen.getByText('Secondary');
-    expect(button).toHaveClass('bg-zinc-100');
+    expect(button).toHaveClass('btn-secondary');
   });
 
   it('shows loading spinner when loading', () => {

@@ -40,7 +40,7 @@ const Avatar = ({ src, alt, fallback, size = 'md', className }: AvatarProps): Re
   return (
     <div
       className={cn(
-        'relative inline-flex items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-purple-500 text-white font-medium overflow-hidden',
+        'relative inline-flex items-center justify-center rounded-full bg-gradient-to-br from-accent to-accent-muted text-surface font-medium overflow-hidden border border-accent/20',
         sizeStyles[size],
         className
       )}

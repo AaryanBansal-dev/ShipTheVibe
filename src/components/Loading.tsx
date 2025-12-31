@@ -23,12 +23,12 @@ const Loading = ({ size = 'md', className, text }: LoadingProps): React.ReactEle
   <div className={cn('flex flex-col items-center justify-center gap-3', className)}>
     <div
       className={cn(
-        'rounded-full border-blue-500 border-t-transparent animate-spin',
+        'rounded-full border-accent border-t-transparent animate-spin',
         sizeStyles[size]
       )}
     />
     {text && (
-      <p className="text-sm text-zinc-500 dark:text-zinc-400">{text}</p>
+      <p className="text-sm text-foreground-muted">{text}</p>
     )}
   </div>
 );
