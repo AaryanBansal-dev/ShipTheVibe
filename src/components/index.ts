@@ -7,3 +7,5 @@ export { default as Avatar } from './Avatar';
 export { default as Loading } from './Loading';
 export { default as Alert } from './Alert';
 export { default as Modal } from './Modal';
+export { default as Navbar } from './Navbar';
+export { default as ShipAnimation } from './ShipAnimation';
