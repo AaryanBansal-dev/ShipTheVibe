@@ -55,17 +55,23 @@ export default function DashboardContent({ user }: DashboardContentProps) {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950">
+    <div className="min-h-screen bg-surface bg-pattern">
+      {/* Decorative background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-[20%] w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-[10%] w-72 h-72 bg-secondary/5 rounded-full blur-3xl" />
+      </div>
+
       {/* Header */}
-      <header className="border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-xl">
+      <header className="relative border-b border-border glass">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <span className="text-2xl font-bold gradient-text">ShipTheVibe</span>
+            <span className="text-xl font-semibold text-gradient">ShipTheVibe</span>
             <div className="flex items-center gap-4">
-              <span className="text-sm text-zinc-400">{user.email}</span>
+              <span className="text-sm text-foreground-muted">{user.email}</span>
               <button
                 onClick={handleSignOut}
-                className="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-medium btn-secondary rounded-lg"
               >
                 Sign Out
               </button>
@@ -75,26 +81,28 @@ export default function DashboardContent({ user }: DashboardContentProps) {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">AI Dashboard</h1>
-          <p className="text-zinc-400">Enter a prompt to interact with the AI models.</p>
+      <main className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="text-center mb-12 animate-reveal-up delay-0">
+          <h1 className="text-4xl font-semibold text-foreground mb-4">AI Dashboard</h1>
+          <p className="text-foreground-muted">Enter a prompt to interact with the AI models.</p>
         </div>
 
         {/* Prompt Form */}
-        <form onSubmit={handleSubmitPrompt} className="mb-8">
+        <form onSubmit={handleSubmitPrompt} className="mb-8 animate-reveal-up delay-150">
           <div className="flex flex-col gap-4">
-            <textarea
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-              placeholder="Type your prompt here..."
-              rows={4}
-              className="w-full px-4 py-3 bg-zinc-900/50 border border-zinc-800 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all resize-none"
-            />
+            <div className="relative">
+              <textarea
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+                placeholder="Type your prompt here..."
+                rows={4}
+                className="w-full px-5 py-4 input rounded-xl resize-none text-base"
+              />
+            </div>
             <button
               type="submit"
               disabled={loading || !prompt.trim()}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25"
+              className="w-full py-3.5 px-4 btn-primary rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -113,22 +121,24 @@ export default function DashboardContent({ user }: DashboardContentProps) {
 
         {/* Error Display */}
         {error && (
-          <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400">
+          <div className="mb-8 p-5 bg-error/10 border border-error/20 rounded-xl text-error animate-reveal-scale">
             {error}
           </div>
         )}
 
         {/* Response Display */}
         {response && (
-          <div className="bg-zinc-900/50 border border-zinc-800 rounded-xl p-6">
-            <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
+          <div className="card p-6 animate-reveal-scale">
+            <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-accent/10 border border-accent/20 flex items-center justify-center">
+                <svg className="w-4 h-4 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
               AI Response
             </h2>
-            <div className="prose prose-invert max-w-none">
-              <p className="text-zinc-300 whitespace-pre-wrap">{response}</p>
+            <div className="pl-11">
+              <p className="text-foreground-muted whitespace-pre-wrap leading-relaxed">{response}</p>
             </div>
           </div>
         )}

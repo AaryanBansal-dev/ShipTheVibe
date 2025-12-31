@@ -16,11 +16,11 @@ interface ButtonProps {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25',
-  secondary: 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-700 dark:text-white dark:hover:bg-zinc-600',
-  outline: 'border-2 border-zinc-300 text-zinc-700 hover:border-zinc-400 hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-200 dark:hover:bg-zinc-800',
-  ghost: 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-200 dark:hover:bg-zinc-800',
-  danger: 'bg-red-500 text-white hover:bg-red-600 shadow-lg shadow-red-500/25',
+  primary: 'btn-primary',
+  secondary: 'btn-secondary',
+  outline: 'border border-border-strong text-foreground hover:bg-surface-overlay hover:border-accent-muted transition-all',
+  ghost: 'text-foreground-muted hover:text-foreground hover:bg-surface-elevated transition-all',
+  danger: 'bg-error text-surface hover:bg-error/90 shadow-lg shadow-error/25 transition-all',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -55,8 +55,8 @@ const Button = ({
     onClick={onClick}
     disabled={disabled || loading}
     className={cn(
-      'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200',
-      'focus:outline-none focus:ring-2 focus:ring-blue-500/50',
+      'inline-flex items-center justify-center gap-2 font-medium rounded-xl',
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-muted focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
       'disabled:opacity-50 disabled:cursor-not-allowed',
       variantStyles[variant],
       sizeStyles[size],

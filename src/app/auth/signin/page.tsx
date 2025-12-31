@@ -34,27 +34,36 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-surface bg-pattern flex items-center justify-center px-4">
+      {/* Decorative background elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-[10%] w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-[10%] w-96 h-96 bg-secondary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-md">
         {/* Logo */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-10 animate-reveal-up delay-0">
           <Link href="/" className="inline-block">
-            <span className="text-3xl font-bold gradient-text">ShipTheVibe</span>
+            <span className="text-3xl font-semibold text-gradient">ShipTheVibe</span>
           </Link>
-          <p className="mt-2 text-zinc-400">Welcome back! Sign in to continue.</p>
+          <p className="mt-3 text-foreground-muted">Welcome back! Sign in to continue.</p>
         </div>
 
         {/* Form Card */}
-        <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-8 backdrop-blur-xl">
-          <form onSubmit={handleSignIn} className="space-y-6">
+        <div className="animate-reveal-up delay-150 card p-8">
+          {/* Corner decoration */}
+          <div className="corner-accent top-left" />
+          
+          <form onSubmit={handleSignIn} className="space-y-6 relative z-10">
             {error && (
-              <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+              <div className="p-4 bg-error/10 border border-error/20 rounded-xl text-error text-sm">
                 {error}
               </div>
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-2">
+              <label htmlFor="email" className="block text-sm font-medium text-foreground-muted mb-2">
                 Email
               </label>
               <input
@@ -63,13 +72,13 @@ export default function SignInPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 input rounded-xl"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-zinc-300 mb-2">
+              <label htmlFor="password" className="block text-sm font-medium text-foreground-muted mb-2">
                 Password
               </label>
               <input
@@ -78,7 +87,7 @@ export default function SignInPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full px-4 py-3 bg-zinc-800/50 border border-zinc-700 rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 input rounded-xl"
                 placeholder="••••••••"
               />
             </div>
@@ -86,7 +95,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-500/25"
+              className="w-full py-3.5 px-4 btn-primary rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -102,10 +111,11 @@ export default function SignInPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center">
-            <p className="text-zinc-400 text-sm">
+          <div className="mt-8 text-center">
+            <div className="accent-line mb-6" />
+            <p className="text-foreground-muted text-sm">
               Don&apos;t have an account?{' '}
-              <Link href="/auth/signup" className="text-blue-400 hover:text-blue-300 font-medium">
+              <Link href="/auth/signup" className="text-accent hover:text-accent-vivid font-medium transition-colors">
                 Sign up
               </Link>
             </p>
